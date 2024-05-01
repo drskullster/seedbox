@@ -115,7 +115,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.deluge.rule=Host(`deluge.${TRAEFIK_DOMAIN}`)"
       - "traefik.http.routers.deluge.entrypoints=websecure"
-      - "traefik.http.services.deluge.loadbalancer.server.port=8112"
       - "traefik.http.routers.deluge.tls.certresolver=myresolver"
       
   jackett:
@@ -134,7 +133,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.jackett.rule=Host(`jackett.${TRAEFIK_DOMAIN}`)"
       - "traefik.http.routers.jackett.entrypoints=websecure"
-      - "traefik.http.services.jackett.loadbalancer.server.port=8112"
       - "traefik.http.routers.jackett.tls.certresolver=myresolver"
       
 
