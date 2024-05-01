@@ -133,6 +133,7 @@ services:
       - PGID=${PGID}
       - PUID=${PUID}
       - TZ=${TZ}
+      - RUN_OPTS='-FlareSolverrURL="http://flaresolverr:8191"'
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jackett.rule=Host(`jackett.${TRAEFIK_DOMAIN}`)"
@@ -142,6 +143,12 @@ services:
     ports:
       - 9117:9117
       
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr
+    container_name: flaresolverr
+    restart: always
+    environment:
+      - CAPTCHA_SOLVER=hcaptcha-solver
 
   plex:
     image: ghcr.io/linuxserver/plex
