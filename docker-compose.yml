@@ -1,4 +1,14 @@
 services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=Europe/Brussels
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_SCHEDULE=0 0 5 * * *
+      - WATCHTOWER_ROLLING_RESTART=true
   traefik:
     image: traefik
     container_name: traefik
@@ -144,12 +154,12 @@ services:
       - 9117:9117
       
   flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr
+    image: ghcr.io/flaresolverr/flaresolverr:pr-1282
     container_name: flaresolverr
     restart: always
     environment:
       - CAPTCHA_SOLVER=hcaptcha-solver
-
+      - LANG=fr-FR
   plex:
     image: ghcr.io/linuxserver/plex
     container_name: plex
